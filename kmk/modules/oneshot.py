@@ -3,7 +3,9 @@ from kmk.modules.holdtap import ActivationType, HoldTap, HoldTapKeyMeta
 
 
 def oneshot_validator(kc, tap_time=None):
-    return HoldTapKeyMeta(tap=kc, hold=kc, prefer_hold=False, tap_time=tap_time)
+    return HoldTapKeyMeta(
+        tap=kc, hold=kc, prefer_hold=False, tap_time=tap_time
+    )
 
 
 class OneShot(HoldTap):
@@ -31,8 +33,12 @@ class OneShot(HoldTap):
             elif state.activated == ActivationType.INTERRUPTED:
                 if is_pressed:
                     keyboard.remove_key(key.meta.tap)
-                    self.key_buffer.append((int_coord, current_key, is_pressed))
-                    keyboard.set_timeout(False, lambda: self.send_key_buffer(keyboard))
+                    self.key_buffer.append(
+                        (int_coord, current_key, is_pressed)
+                    )
+                    keyboard.set_timeout(
+                        False, lambda: self.send_key_buffer(keyboard)
+                    )
                     current_key = None
                 else:
                     self.ht_released(key, keyboard)

@@ -179,7 +179,10 @@ class KMKKeyboard:
         copying the reference to hopefully safe some time on allocations.
         '''
 
-        buffer, self._resume_buffer = self._resume_buffer, self._resume_buffer_x
+        buffer, self._resume_buffer = (
+            self._resume_buffer,
+            self._resume_buffer_x,
+        )
 
         while buffer:
             ksf = buffer.pop(0)
@@ -354,7 +357,9 @@ class KMKKeyboard:
         To save RAM on boards that don't use Split, we don't import Split
         and do an isinstance check, but instead do string detection
         '''
-        if any(x.__class__.__module__ == 'kmk.modules.split' for x in self.modules):
+        if any(
+            x.__class__.__module__ == 'kmk.modules.split' for x in self.modules
+        ):
             return
 
         if not self.coord_mapping:
@@ -485,8 +490,12 @@ class KMKKeyboard:
                 if debug.enabled:
                     debug(f'Error in {ext}.powersave_disable: {err}')
 
-    def go(self, hid_type=HIDModes.USB, secondary_hid_type=None, **kwargs) -> None:
-        self._init(hid_type=hid_type, secondary_hid_type=secondary_hid_type, **kwargs)
+    def go(
+        self, hid_type=HIDModes.USB, secondary_hid_type=None, **kwargs
+    ) -> None:
+        self._init(
+            hid_type=hid_type, secondary_hid_type=secondary_hid_type, **kwargs
+        )
         while True:
             self._main_loop()
 
