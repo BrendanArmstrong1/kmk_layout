@@ -6,6 +6,7 @@ from kmk.keys import KC
 from kmk.modules.layers import Layers
 from kmk.modules.rapidfire import RapidFire
 from kmk.modules.modtap import ModTap
+from kmk.modules.oneshot import OneShot
 from kmk.modules.mouse_keys import MouseKeys
 from kmk.modules.split import Split
 
@@ -22,9 +23,11 @@ split = Split(
 rapid_fire = RapidFire()
 layers_ext = Layers()
 mod_tap = ModTap()
+one_shot = OneShot()
 mouse_key = MouseKeys()
 
 mod_tap.tap_time = 150
+one_shot.tap_time = 250
 
 keyboard.modules = [
     layers_ext,
@@ -32,6 +35,7 @@ keyboard.modules = [
     mod_tap,
     mouse_key,
     rapid_fire,
+    one_shot,
 ]
 
 # Cleaner key names
@@ -39,7 +43,7 @@ _______ = KC.TRNS
 XXXXXXX = KC.NO
 
 # OneShot
-ONSHT1 = KC.MO(1)
+ONSHT1 = KC.OS(KC.MO(1))
 LAYER_4 = KC.MO(3)
 
 # Mod-taps
@@ -81,7 +85,7 @@ keyboard.keymap = [
      KC.GRV, KC.CIRC, KC.BSLS, KC.PERC, KC.PLUS, KC.MINS, KC.LBRC, KC.RBRC,  KC.DLR, KC.BSPC,
      KC.ESC, KC.UNDS, KC.TILD, KC.ASTR,  KC.TAB,  KC.ENT, KC.LCBR, KC.RCBR, KC.QUES, KC.PSLS,
     KC.PIPE, KC.HASH, KC.LABK, KC.RABK, KC.AMPR,  KC.EQL, KC.LPRN, KC.RPRN,   KC.AT, KC.EXLM,
-                               KC.LSFT, _______,  KC.SPC, KC.LCTL,
+                               KC.LSFT,KC.TO(0),  KC.SPC, KC.LCTL,
     ],
     [  # NUMBERS
     LAYER_4, KC.COMM,  KC.DOT,  KC.INS, KC.PLUS, KC.MINS,   KC.N1,   KC.N2,   KC.N3, KC.BSPC,
