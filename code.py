@@ -27,7 +27,7 @@ one_shot = OneShot()
 mouse_key = MouseKeys()
 
 mod_tap.tap_time = 150
-one_shot.tap_time = 250
+one_shot.tap_time = 350
 
 keyboard.modules = [
     layers_ext,
